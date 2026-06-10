@@ -15,6 +15,8 @@ import { findRelevantContext } from './context';
 import { sendHumanized } from './humanize';
 import { moderateMessage } from './moderation';
 import { startAllSchedulers, startScheduler, stopScheduler } from './scheduler';
+import { runCatchUp, saveShutdownTime } from './catchup';
+import { trackAnswer, checkResolved, learnFaq } from './faq-learner';
 
 // --- Load configs ---
 // Multi-guild: --configs ./configs/   (directory)
@@ -149,6 +151,18 @@ client.on('messageCreate', async (message: Message) => {
     const moderated = await moderateMessage(message, config);
     if (moderated) return;
 
+    // Check if this is a "resolved" confirmation (thanks, got it, etc.)
+    const resolved = await checkResolved(
+      message.content,
+      message.author.id,
+      message.channel.id
+    );
+    if (resolved) {
+      await message.react('\u2705');
+      await learnFaq(client, config, resolved.question, resolved.answer);
+      return;
+    }
+
     const mentioned = message.mentions.has(client.user!.id);
     const inHelp = message.channel.id === config.channels.help;
     const convoKey = `${message.channel.id}:${message.author.id}`;
@@ -199,6 +213,18 @@ client.on('messageCreate', async (message: Message) => {
 
     await sendHumanized(channel, response);
     activeConversations.set(convoKey, Date.now());
+
+    // Track this answer for FAQ learning
+    if (intent === 'support') {
+      trackAnswer(
+        message.id,
+        content,
+        response,
+        message.guild!.id,
+        message.channel.id,
+        message.author.id
+      );
+    }
 
     if (intent === 'bug') {
       await escalateToOwner(client, config, message.author.tag, channel.name, content, 'bug report');
@@ -254,23 +280,28 @@ client.on('guildMemberAdd', async (member) => {
 });
 
 // --- Ready ---
-client.once('ready', () => {
+client.once('ready', async () => {
   console.log(`[bot] online as ${client.user?.tag}`);
   for (const cfg of guilds.values()) {
     console.log(`[bot] serving ${cfg.app.name} (${cfg.guild_id})`);
   }
   startAllSchedulers(client, guilds);
+
+  // Catch up on unanswered questions from while we were offline
+  await runCatchUp(client, guilds);
 });
 
 // --- Graceful shutdown ---
 process.on('SIGINT', () => {
   console.log('[bot] shutting down...');
+  saveShutdownTime();
   stopScheduler();
   client.destroy();
   process.exit(0);
 });
 
 process.on('SIGTERM', () => {
+  saveShutdownTime();
   stopScheduler();
   client.destroy();
   process.exit(0);

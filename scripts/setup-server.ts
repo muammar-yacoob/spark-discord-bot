@@ -208,10 +208,26 @@ const botLogs = await api(`/guilds/${GUILD_ID}/channels`, 'POST', {
   name: 'bot-logs', type: 0, parent_id: staffCat.id, topic: 'Automated moderation and bot activity logs.',
 });
 
-// --- Step 5: Post rules ---
+// --- Step 5: Post rules (embed) ---
 console.log('[5/7] Posting rules and welcome message...');
+const rulesEmbed = {
+  title: `Welcome to ${config.app.name}`,
+  description: `${config.app.tagline}\n\nWe're glad you're here. Please read the rules below.`,
+  color: 0x57f287,
+  fields: [
+    { name: '1. Be respectful', value: 'No harassment, hate speech, or personal attacks. Ever.' },
+    { name: '2. Stay on topic', value: 'Use the right channels. Off-topic has its own room.' },
+    { name: '3. No spam or self-promo', value: 'Share your work in #show-and-tell, not everywhere.' },
+    { name: '4. Search before asking', value: 'Check #faq and #help first.' },
+    { name: '5. Report bugs properly', value: 'Use #bug-reports with steps to reproduce.' },
+    { name: '6. No unsolicited DMs', value: "Don't message members or staff without permission." },
+    { name: '7. English only', value: 'In public channels.' },
+    { name: '8. Staff decisions are final', value: 'Disagree? DM a moderator calmly.' },
+  ],
+  footer: { text: 'React with a checkmark below to agree and get access.' },
+};
 const rulesMsg = await api(`/channels/${rules.id}/messages`, 'POST', {
-  content: `**Welcome to ${config.app.name}**\n\n${config.app.tagline}. We're glad you're here.\n\n**Rules** (short version)\n\n1. **Be respectful.** No harassment, hate speech, or personal attacks. Ever.\n2. **Stay on topic.** Use the right channels. Off-topic has its own room.\n3. **No spam or self-promo.** Share your work in #show-and-tell, not everywhere.\n4. **Search before asking.** Check #faq and #help first.\n5. **Report bugs properly.** Use #bug-reports with steps to reproduce.\n6. **No unsolicited DMs.** Don't message members or staff without permission.\n7. **English only** in public channels.\n8. **Staff decisions are final.**\n\nBreaking rules = warning, then timeout, then ban.\n\n**To get access**, react with a checkmark below.`,
+  embeds: [rulesEmbed],
 });
 
 // Add checkmark reaction
@@ -224,12 +240,15 @@ await api(`/channels/${links.id}/messages`, 'POST', {
   content: `**${config.app.name} Quick Links**\n\n:globe_with_meridians:  **Website** -- ${config.app.url}\n:bug:  **Report a Bug** -- post in #bug-reports\n:bulb:  **Request a Feature** -- post in #feature-requests\n\n*Bookmark this channel for quick access.*`,
 });
 
-// Post FAQ
-const faqContent = config.faq
-  .map((f: any) => `**${f.q}**\n${f.a}`)
-  .join('\n\n');
+// Post FAQ (embed)
+const faqEmbed = {
+  title: `${config.app.name} -- FAQ`,
+  color: 0x5865f2,
+  fields: config.faq.slice(0, 25).map((f: any) => ({ name: f.q, value: f.a })),
+  footer: { text: "Don't see your question? Ask in #help." },
+};
 const faqMsg = await api(`/channels/${faqCh.id}/messages`, 'POST', {
-  content: `**Frequently Asked Questions**\n\n${faqContent}\n\n*Don't see your question? Ask in #help.*`,
+  embeds: [faqEmbed],
 });
 
 // Pin important messages
