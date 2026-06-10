@@ -4,7 +4,9 @@
     "tagline": "AI proxy backend for Chrome extensions and web apps",
     "url": "https://sparkbrain.app",
     "description": "Spark AI is a secure Vercel-hosted AI proxy that lets Chrome extensions, web apps, and websites integrate AI chat via Groq. Includes a drop-in chat widget, app registration dashboard, rate limiting, voice chat, live chat with ticket routing, and phone integration via Telnyx.",
-    "stack": "Next.js 16, Neon PostgreSQL, Drizzle ORM, Groq API, Stripe, Telnyx"
+    "stack": "Next.js 16, Neon PostgreSQL, Drizzle ORM, Groq API, Stripe, Telnyx",
+    "brand_color": 8093603,
+    "icon_url": "https://sparkbrain.app/favicon.png"
   },
   "guild_id": "1485605971446464613",
   "owner_id": "503658873534677022",

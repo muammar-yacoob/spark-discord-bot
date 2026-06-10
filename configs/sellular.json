@@ -4,7 +4,9 @@
     "tagline": "SaaS visibility toolkit for indie developers",
     "url": "https://sellular.app",
     "description": "Sellular helps software makers get found. Submit to 30+ directories with DA metrics, generate AI-powered competitor reviews, track page views, build community connections through the Grow Together directory, and send AI-generated newsletter spotlights with approval workflows.",
-    "stack": "Next.js 15, Bun, Neon PostgreSQL, NextAuth v5, Groq AI, QStash, Bottled Email"
+    "stack": "Next.js 15, Bun, Neon PostgreSQL, NextAuth v5, Groq AI, QStash, Bottled Email",
+    "brand_color": 6275007,
+    "icon_url": "https://sellular.app/favicon.png"
   },
   "guild_id": "1513180673513361469",
   "owner_id": "503658873534677022",

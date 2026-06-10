@@ -4,7 +4,9 @@
     "tagline": "AI-powered social media automation for content creators",
     "url": "https://viralcat.app",
     "description": "Viral Cat helps content creators discover viral content via AI, auto-generate videos with Ken Burns effects, and schedule uploads across Instagram, YouTube, TikTok, LinkedIn, Twitter/X, and more. Connect Google Drive for brand assets, generate AI images, add TTS narration, and batch-publish everywhere.",
-    "stack": "Next.js 15, Bun, Neon PostgreSQL, Drizzle ORM, Groq AI, FFmpeg, QStash"
+    "stack": "Next.js 15, Bun, Neon PostgreSQL, Drizzle ORM, Groq AI, FFmpeg, QStash",
+    "brand_color": 16738484,
+    "icon_url": "https://viralcat.app/favicon.png"
   },
   "guild_id": "1484023546777829419",
   "owner_id": "503658873534677022",

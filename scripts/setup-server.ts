@@ -210,10 +210,13 @@ const botLogs = await api(`/guilds/${GUILD_ID}/channels`, 'POST', {
 
 // --- Step 5: Post rules (embed) ---
 console.log('[5/7] Posting rules and welcome message...');
+const brandColor = config.app.brand_color || 0x57f287;
+const iconUrl = config.app.icon_url || null;
 const rulesEmbed = {
   title: `Welcome to ${config.app.name}`,
   description: `${config.app.tagline}\n\nWe're glad you're here. Please read the rules below.`,
-  color: 0x57f287,
+  color: brandColor,
+  ...(iconUrl && { thumbnail: { url: iconUrl } }),
   fields: [
     { name: '1. Be respectful', value: 'No harassment, hate speech, or personal attacks. Ever.' },
     { name: '2. Stay on topic', value: 'Use the right channels. Off-topic has its own room.' },
@@ -243,7 +246,8 @@ await api(`/channels/${links.id}/messages`, 'POST', {
 // Post FAQ (embed)
 const faqEmbed = {
   title: `${config.app.name} -- FAQ`,
-  color: 0x5865f2,
+  color: brandColor,
+  ...(iconUrl && { thumbnail: { url: iconUrl } }),
   fields: config.faq.slice(0, 25).map((f: any) => ({ name: f.q, value: f.a })),
   footer: { text: "Don't see your question? Ask in #help." },
 };

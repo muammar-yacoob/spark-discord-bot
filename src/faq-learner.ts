@@ -212,10 +212,15 @@ export async function updateFaqChannel(
 
 /** Build a styled FAQ embed */
 export function buildFaqEmbed(config: AppConfig): EmbedBuilder {
+  const color = config.app.brand_color || 0x5865f2;
   const embed = new EmbedBuilder()
     .setTitle(`${config.app.name} -- FAQ`)
-    .setColor(0x5865f2)
+    .setColor(color)
     .setFooter({ text: "Don't see your question? Ask in #help." });
+
+  if (config.app.icon_url) {
+    embed.setThumbnail(config.app.icon_url);
+  }
 
   for (const faq of config.faq.slice(0, 25)) { // Discord max 25 fields
     embed.addFields({ name: faq.q, value: faq.a });
@@ -226,10 +231,11 @@ export function buildFaqEmbed(config: AppConfig): EmbedBuilder {
 
 /** Build a styled rules embed */
 export function buildRulesEmbed(config: AppConfig): EmbedBuilder {
-  return new EmbedBuilder()
+  const color = config.app.brand_color || 0x57f287;
+  const embed = new EmbedBuilder()
     .setTitle(`Welcome to ${config.app.name}`)
-    .setDescription(config.app.tagline)
-    .setColor(0x57f287)
+    .setDescription(`${config.app.tagline}\n\nWe're glad you're here. Please read the rules below.`)
+    .setColor(color)
     .addFields(
       { name: '1. Be respectful', value: 'No harassment, hate speech, or personal attacks. Ever.' },
       { name: '2. Stay on topic', value: 'Use the right channels. Off-topic has its own room.' },
@@ -241,4 +247,10 @@ export function buildRulesEmbed(config: AppConfig): EmbedBuilder {
       { name: '8. Staff decisions are final', value: 'Disagree? DM a moderator calmly.' },
     )
     .setFooter({ text: 'React with a checkmark below to agree and get access.' });
+
+  if (config.app.icon_url) {
+    embed.setThumbnail(config.app.icon_url);
+  }
+
+  return embed;
 }

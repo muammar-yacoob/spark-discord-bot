@@ -8,6 +8,8 @@ export interface AppConfig {
     url: string;
     description: string;
     stack: string;
+    brand_color?: number;
+    icon_url?: string;
   };
   guild_id: string;
   owner_id: string;
