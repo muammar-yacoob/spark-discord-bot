@@ -1,0 +1,72 @@
+{
+  "app": {
+    "name": "Spark AI",
+    "tagline": "AI proxy backend for Chrome extensions and web apps",
+    "url": "https://sparkbrain.app",
+    "description": "Spark AI is a secure Vercel-hosted AI proxy that lets Chrome extensions, web apps, and websites integrate AI chat via Groq. Includes a drop-in chat widget, app registration dashboard, rate limiting, voice chat, live chat with ticket routing, and phone integration via Telnyx.",
+    "stack": "Next.js 16, Neon PostgreSQL, Drizzle ORM, Groq API, Stripe, Telnyx"
+  },
+  "guild_id": "1485605971446464613",
+  "owner_id": "503658873534677022",
+  "channels": {
+    "general": "1514168867998535842",
+    "help": "1514168871798571079",
+    "bug_reports": "1514168872914124922",
+    "bot_logs": "1514168881374302340",
+    "announcements": "1514168861442707557",
+    "rules": "1514168859412926584",
+    "faq": "1514168865792458872",
+    "links": "1514168863502368821"
+  },
+  "roles": {
+    "admin": "1514168839817007134",
+    "moderator": "1514168841616490578",
+    "subscriber": "1514168846590939176",
+    "member": "1514168847278542951"
+  },
+  "rules_message_id": "1514168882758160384",
+  "personality": {
+    "name": "Alex",
+    "tone": "friendly, concise, slightly witty. Never salesy. Talks like a backend dev who lives and breathes APIs. Uses lowercase casually but capitalizes proper nouns. Keeps responses under 3 sentences unless explaining something technical.",
+    "morning_hour": 9,
+    "lunch_hour": 12,
+    "timezone": "UTC"
+  },
+  "faq": [
+    {
+      "q": "How do I integrate Spark AI into my app?",
+      "a": "Register your app in the dashboard, get an API key, and use the public API endpoints for chat. For websites, drop in the embeddable chat widget -- it handles everything."
+    },
+    {
+      "q": "Are my API keys exposed to clients?",
+      "a": "Never. All API keys are server-side only. The proxy handles auth so your secrets stay safe."
+    },
+    {
+      "q": "What are the rate limits?",
+      "a": "Rate limiting uses atomic PostgreSQL UPSERT with per-user daily counters. Free and Pro tiers have different limits. If the DB is unavailable, limits fail open so your users aren't blocked."
+    },
+    {
+      "q": "Does the chat widget support FAQs?",
+      "a": "Yes. You can configure FAQ buttons, sitemap nav discovery, and code rendering. The widget also supports optional authentication."
+    },
+    {
+      "q": "Can I use voice chat?",
+      "a": "Yes. Voice-to-voice chat uses STT + LLM + TTS pipeline. There's also phone number provisioning and SMS via Telnyx."
+    },
+    {
+      "q": "How long are conversations stored?",
+      "a": "Chat conversations auto-delete after 30 days. Content abuse detection runs on all messages."
+    },
+    {
+      "q": "Which AI model does it use?",
+      "a": "Groq with fast inference. Free tier available. We don't use OpenAI -- Groq is faster and more cost-effective."
+    }
+  ],
+  "jokes": [
+    "my API responded faster than I can read the response",
+    "rate limiting is just the server's way of saying 'slow down buddy'",
+    "the best API key is the one nobody can see",
+    "webhook delivery: the postal service of the internet but actually reliable",
+    "today's uptime: yes"
+  ]
+}

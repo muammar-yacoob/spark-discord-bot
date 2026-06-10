@@ -1,0 +1,72 @@
+{
+  "app": {
+    "name": "Bottled",
+    "tagline": "Professional email with your own domain",
+    "url": "https://bottled.email",
+    "description": "Bottled is a SaaS platform for professional email management using custom domains. Connect your domain, Cloudflare handles DNS and inbound routing, Amazon SES handles outbound. Includes rich compose editor, email campaigns with tracking, CRM with engagement scoring, auto-reply rules, team management, and an API.",
+    "stack": "Next.js 15, Neon PostgreSQL, Drizzle ORM, Amazon SES, Cloudflare, QStash"
+  },
+  "guild_id": "1513179953808539708",
+  "owner_id": "503658873534677022",
+  "channels": {
+    "general": "1514168981366374460",
+    "help": "1514168984751046700",
+    "bug_reports": "1514168985900285993",
+    "bot_logs": "1514168993496305685",
+    "announcements": "1514168975435763794",
+    "rules": "1514168972873044050",
+    "faq": "1514168979277480106",
+    "links": "1514168977331585034"
+  },
+  "roles": {
+    "admin": "1514168954493341756",
+    "moderator": "1514168955470876672",
+    "subscriber": "1514168956397817989",
+    "member": "1514168957395796049"
+  },
+  "rules_message_id": "1514168994343419925",
+  "personality": {
+    "name": "Alex",
+    "tone": "friendly, concise, slightly witty. Never salesy. Talks like a dev who has configured way too many DNS records. Uses lowercase casually but capitalizes proper nouns. Keeps responses under 3 sentences unless explaining something technical.",
+    "morning_hour": 9,
+    "lunch_hour": 12,
+    "timezone": "UTC"
+  },
+  "faq": [
+    {
+      "q": "How do I connect my custom domain?",
+      "a": "Add your domain in the dashboard. Bottled sets up Cloudflare DNS records automatically. Just point your nameservers and you're live."
+    },
+    {
+      "q": "How does email sending work?",
+      "a": "Outbound email goes through Amazon SES for high deliverability. Inbound routes through Cloudflare and forwards to your real inbox."
+    },
+    {
+      "q": "Can I send email campaigns?",
+      "a": "Yes. Create campaigns with the rich Tiptap editor, use templates, and track opens and clicks with built-in analytics."
+    },
+    {
+      "q": "Does Bottled have a CRM?",
+      "a": "Yes -- contacts, lists, lifecycle stages, and engagement scoring. All tied to your email activity."
+    },
+    {
+      "q": "Can I set up auto-replies?",
+      "a": "Yes. Configure auto-reply rules and email forwarding per address."
+    },
+    {
+      "q": "Is there team support?",
+      "a": "Yes. Add team members with owner or member roles. Each gets access to shared inboxes."
+    },
+    {
+      "q": "How do I test without hurting my sender reputation?",
+      "a": "Use SES simulator addresses like success@simulator.amazonses.com for safe testing."
+    }
+  ],
+  "jokes": [
+    "the DNS propagation is not instant and neither is my patience",
+    "MX records: the reason devs have trust issues with DNS",
+    "my inbox zero lasted exactly 4 minutes",
+    "SPF, DKIM, DMARC -- the holy trinity of 'please don't go to spam'",
+    "email campaigns: because sometimes you need to yell into the void professionally"
+  ]
+}

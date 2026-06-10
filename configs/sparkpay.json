@@ -1,0 +1,72 @@
+{
+  "app": {
+    "name": "SparkPay",
+    "tagline": "Hosted Stripe payment backend for app developers",
+    "url": "https://sparkpay.dev",
+    "description": "SparkPay handles checkout, webhooks, emails, invoices, analytics, and subscription management so you can focus on building your app. Supports free-tier, one-time, recurring, and pay-as-you-go pricing.",
+    "stack": "Next.js 15, Bun, Neon PostgreSQL, Drizzle ORM, Stripe, NextAuth v5"
+  },
+  "guild_id": "1480307708384116890",
+  "owner_id": "503658873534677022",
+  "channels": {
+    "general": "1514023176873443449",
+    "help": "1514023190131769356",
+    "bug_reports": "1514023194330136668",
+    "bot_logs": "1514023217285697717",
+    "announcements": "1480307709906518170",
+    "rules": "1480307709906518169"
+  },
+  "roles": {
+    "admin": "1514022965392576574",
+    "moderator": "1514022969079500800",
+    "subscriber": "1514022973164748830",
+    "member": "1514022975328747682"
+  },
+  "rules_message_id": "1514023417152671875",
+  "personality": {
+    "name": "Alex",
+    "tone": "friendly, concise, slightly witty. Never salesy. Never uses corporate jargon. Talks like a helpful dev friend, not a support agent. Uses lowercase casually but capitalizes proper nouns. Keeps responses under 3 sentences unless explaining something technical.",
+    "morning_hour": 9,
+    "lunch_hour": 12,
+    "timezone": "UTC"
+  },
+  "faq": [
+    {
+      "q": "How do I set up SparkPay for my app?",
+      "a": "Register your app in the dashboard, configure your pricing plans, and drop the hosted pricing page link into your app. SparkPay handles checkout, webhooks, and emails from there."
+    },
+    {
+      "q": "Does SparkPay support pay-as-you-go pricing?",
+      "a": "Yes. You can set up PAYG plans with per-key usage tracking. Usage is metered and billed through Stripe."
+    },
+    {
+      "q": "How do webhooks work?",
+      "a": "SparkPay sends HMAC-signed webhooks to your configured endpoint whenever a subscription event happens (new purchase, cancellation, refund, etc). You verify the signature and handle the event."
+    },
+    {
+      "q": "Can I use coupons and referrals?",
+      "a": "Yes. Create coupons with tier scoping, expiry dates, and max-use limits. The referral system auto-generates reward coupons for successful referrals."
+    },
+    {
+      "q": "Is there a free tier?",
+      "a": "You can configure a free tier for your app's pricing. Users on free tier get access without a Stripe checkout."
+    },
+    {
+      "q": "How do I test locally?",
+      "a": "Run `bun dev` which starts the Next.js dev server and Stripe listener on the same port. Make sure your Google OAuth redirect URIs include the dev port."
+    },
+    {
+      "q": "What emails does SparkPay send?",
+      "a": "Receipts, verification, trial reminders, follow-up campaigns, cancellation confirmations, and refund notifications. All templated and customizable per app."
+    }
+  ],
+  "jokes": [
+    "anyone else's code work perfectly until a customer touches it?",
+    "stripe webhooks are like pizza delivery -- you never know exactly when they'll arrive but you're always happy when they do",
+    "hot take: the best bug fix is the one you never had to write because the payment gateway handled it",
+    "day 47 of pretending I understand tax calculations in every country",
+    "my code doesn't have bugs, it has surprise features that users discover for free",
+    "if your checkout flow has more steps than making actual coffee, something went wrong",
+    "the three states of a subscription: active, expired, and 'I swear I cancelled this'"
+  ]
+}

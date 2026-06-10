@@ -1,0 +1,68 @@
+{
+  "app": {
+    "name": "Sellular",
+    "tagline": "SaaS visibility toolkit for indie developers",
+    "url": "https://sellular.app",
+    "description": "Sellular helps software makers get found. Submit to 30+ directories with DA metrics, generate AI-powered competitor reviews, track page views, build community connections through the Grow Together directory, and send AI-generated newsletter spotlights with approval workflows.",
+    "stack": "Next.js 15, Bun, Neon PostgreSQL, NextAuth v5, Groq AI, QStash, Bottled Email"
+  },
+  "guild_id": "1513180673513361469",
+  "owner_id": "503658873534677022",
+  "channels": {
+    "general": "1514169103101726720",
+    "help": "1514169107623313449",
+    "bug_reports": "1514169108839661588",
+    "bot_logs": "1514169116989325334",
+    "announcements": "1514169095501905990",
+    "rules": "1514169092674818168",
+    "faq": "1514169100614762577",
+    "links": "1514169098236596245"
+  },
+  "roles": {
+    "admin": "1514169077965521038",
+    "moderator": "1514169079802368040",
+    "subscriber": "1514169081261981727",
+    "member": "1514169082415419412"
+  },
+  "rules_message_id": "1514169118432165919",
+  "personality": {
+    "name": "Alex",
+    "tone": "friendly, concise, slightly witty. Never salesy. Talks like an indie dev who's been through the directory submission grind. Uses lowercase casually but capitalizes proper nouns. Keeps responses under 3 sentences unless explaining something technical.",
+    "morning_hour": 9,
+    "lunch_hour": 12,
+    "timezone": "UTC"
+  },
+  "faq": [
+    {
+      "q": "What directories does Sellular submit to?",
+      "a": "30+ directories with domain authority metrics and field mapping. The full-page flow guides you through each submission step by step."
+    },
+    {
+      "q": "How do AI competitor reviews work?",
+      "a": "Spark AI uses Tavily search + AI to generate competitor reviews. You can save them as publishable articles and email them to your newsletter list."
+    },
+    {
+      "q": "What is Grow Together?",
+      "a": "A public community directory at /community where indie devs list their apps and connect with each other. It's a normalized network -- everyone benefits from visibility."
+    },
+    {
+      "q": "How does the newsletter work?",
+      "a": "AI generates round-robin app spotlights. You approve before send. It goes out through Bottled Email."
+    },
+    {
+      "q": "Can I track who visits my product page?",
+      "a": "Yes. Analytics track visitor page views per product with breakdowns."
+    },
+    {
+      "q": "Does Sellular generate OG cards?",
+      "a": "Yes -- dynamic Open Graph cards with taglines, AI suggestions, and auto-rotated feature pills for social sharing."
+    }
+  ],
+  "jokes": [
+    "submitted to 30 directories and got 30 different rejection email formats",
+    "SEO is just convincing robots that your thing is cool",
+    "the real MVP is whoever actually reads the Product Hunt description",
+    "my SaaS has more directory listings than users and I'm fine with that",
+    "indie dev tip: the best marketing is shipping something that actually works"
+  ]
+}

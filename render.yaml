@@ -1,0 +1,10 @@
+services:
+  - type: worker
+    name: alex-bot
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DISCORD_BOT_TOKEN
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false

@@ -1,0 +1,68 @@
+{
+  "app": {
+    "name": "Viral Cat",
+    "tagline": "AI-powered social media automation for content creators",
+    "url": "https://viralcat.app",
+    "description": "Viral Cat helps content creators discover viral content via AI, auto-generate videos with Ken Burns effects, and schedule uploads across Instagram, YouTube, TikTok, LinkedIn, Twitter/X, and more. Connect Google Drive for brand assets, generate AI images, add TTS narration, and batch-publish everywhere.",
+    "stack": "Next.js 15, Bun, Neon PostgreSQL, Drizzle ORM, Groq AI, FFmpeg, QStash"
+  },
+  "guild_id": "1484023546777829419",
+  "owner_id": "503658873534677022",
+  "channels": {
+    "general": "1514168751807922176",
+    "help": "1514168755331137587",
+    "bug_reports": "1514168756845285416",
+    "bot_logs": "1514168763874934876",
+    "announcements": "1514168742265753611",
+    "rules": "1514168739690713150",
+    "faq": "1514168747798171738",
+    "links": "1514168744945914026"
+  },
+  "roles": {
+    "admin": "1514168727019716608",
+    "moderator": "1514168727812313172",
+    "subscriber": "1514168729049763901",
+    "member": "1514168730064523445"
+  },
+  "rules_message_id": "1514168765816901713",
+  "personality": {
+    "name": "Alex",
+    "tone": "friendly, concise, slightly witty. Never salesy. Talks like a helpful dev friend who knows social media automation inside out. Uses lowercase casually but capitalizes proper nouns. Keeps responses under 3 sentences unless explaining something technical.",
+    "morning_hour": 9,
+    "lunch_hour": 12,
+    "timezone": "UTC"
+  },
+  "faq": [
+    {
+      "q": "What platforms does Viral Cat support?",
+      "a": "Instagram, YouTube, TikTok, LinkedIn, Twitter/X, Threads, Bluesky, Pinterest, and Reddit. Twitter/X is text-only since v1.1 sunset -- OG card unfurling provides visuals."
+    },
+    {
+      "q": "How does AI content discovery work?",
+      "a": "A 3-tier pipeline uses Groq AI to find trending content, generate hashtags, and suggest topics based on your niche. It runs daily at 6 AM UTC."
+    },
+    {
+      "q": "Can I use my own images and music?",
+      "a": "Yes. Connect Google Drive and organize brand assets in folders. Drive files are prioritized over AI-generated content -- synthetics only fill gaps."
+    },
+    {
+      "q": "How does video generation work?",
+      "a": "Videos are generated with AI images, Ken Burns zoom effects, optional TTS narration, and custom background music. Generation is manual via the UI button due to Vercel timeout constraints."
+    },
+    {
+      "q": "Does it support scheduled posting?",
+      "a": "Yes. All scheduling runs through QStash. You can customize per platform, set times, and batch-publish. Failed posts auto-retry."
+    },
+    {
+      "q": "Can I add overlays to my content?",
+      "a": "Yes -- taglines, CTAs, and discount codes can be overlaid on both videos and images using the overlay system."
+    }
+  ],
+  "jokes": [
+    "the algorithm giveth and the algorithm taketh away",
+    "my content calendar has more entries than my actual calendar",
+    "hot take: scheduling posts at 2am hits different when you're actually awake at 2am",
+    "tiktok trends move so fast even the AI needs a coffee break",
+    "today's mood: watching engagement metrics like it's a stock ticker"
+  ]
+}
