@@ -17,6 +17,7 @@ import { moderateMessage } from './moderation';
 import { startAllSchedulers, startScheduler, stopScheduler } from './scheduler';
 import { runCatchUp, saveShutdownTime } from './catchup';
 import { trackAnswer, checkResolved, learnFaq } from './faq-learner';
+import { startDigest, stopDigest } from './digest';
 
 // --- Load configs ---
 // Multi-guild: --configs ./configs/   (directory)
@@ -286,6 +287,7 @@ client.once('ready', async () => {
     console.log(`[bot] serving ${cfg.app.name} (${cfg.guild_id})`);
   }
   startAllSchedulers(client, guilds);
+  startDigest(client, guilds);
 
   // Catch up on unanswered questions from while we were offline
   await runCatchUp(client, guilds);
@@ -296,6 +298,7 @@ process.on('SIGINT', () => {
   console.log('[bot] shutting down...');
   saveShutdownTime();
   stopScheduler();
+  stopDigest();
   client.destroy();
   process.exit(0);
 });
@@ -303,6 +306,7 @@ process.on('SIGINT', () => {
 process.on('SIGTERM', () => {
   saveShutdownTime();
   stopScheduler();
+  stopDigest();
   client.destroy();
   process.exit(0);
 });
