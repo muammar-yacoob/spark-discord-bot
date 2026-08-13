@@ -142,7 +142,7 @@ ALWAYS_TILT = {"sun": 15.0}
 # value tucks more of the mark up under the brim.
 APP_TUNING = {
     # The blob sits small in frame and wants its dome up under the brim.
-    "sellular": {"mark": 1.20, "hat": 1.10, "sink": 0.66},
+    "sellular": {"mark": 1.20, "hat": 1.10, "sink": 0.26, "dx": 0.05},
 }
 
 STYLES = {
@@ -274,6 +274,7 @@ def compose(icon_path, style, app=None):
         hat_x = mark_x + (mark.width - hat.width) // 2
     else:
         hat_x = mark_x + crown_x - hat.width // 2
+    hat_x += int(mark.width * tune.get('dx', 0.0))
     sink = tune.get('sink', STYLE_SINK.get(style, HAT_SINK))
     hat_y = mark_y + crown_y - hat.height + int(hat.height * sink)
     canvas.alpha_composite(hat, (max(0, hat_x), max(0, hat_y)))
