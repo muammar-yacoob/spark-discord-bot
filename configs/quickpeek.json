@@ -1,0 +1,62 @@
+{
+  "app": {
+    "name": "QuickPeek",
+    "tagline": "AI-powered demo video generation",
+    "url": "https://quickpeek.co",
+    "description": "QuickPeek turns your app into a demo video without the recording session: point it at a URL, and it generates a narrated walkthrough. Use it from the web app or the CLI when you need a demo for a launch, a listing or a landing page.",
+    "stack": "Next.js, Bun, Neon PostgreSQL, NextAuth, Playwright",
+    "brand_color": 3718648,
+    "icon_url": "https://quickpeek.co/favicon.png"
+  },
+  "guild_id": "1537488232718274602",
+  "owner_id": "503658873534677022",
+  "channels": {
+    "general": "1537500507168579655",
+    "help": "1537500510968479764",
+    "bug_reports": "1537500512096755795",
+    "bot_logs": "1537500520095420438",
+    "announcements": "1537500499849257100",
+    "rules": "1537500496628162651",
+    "faq": "1537500504899326012",
+    "links": "1537500502827335740"
+  },
+  "roles": {
+    "admin": "1537500484359688242",
+    "moderator": "1537500485001674875",
+    "subscriber": "1537500486222221363",
+    "member": "1537500487245365258"
+  },
+  "rules_message_id": "1537500520917508263",
+  "personality": {
+    "name": "Alex",
+    "tone": "friendly, concise, slightly witty. Never salesy. Talks like a helpful dev friend who has recorded one too many demo videos by hand. Uses lowercase casually but capitalizes proper nouns. Keeps responses under 3 sentences unless explaining something technical.",
+    "morning_hour": 9,
+    "lunch_hour": 12,
+    "timezone": "UTC"
+  },
+  "faq": [
+    {
+      "q": "What does QuickPeek do?",
+      "a": "It generates demo videos of your app, so you get a walkthrough without setting up a screen recording session."
+    },
+    {
+      "q": "Is there a CLI?",
+      "a": "Yes, there is a CLI alongside the web app if you would rather generate demos from your terminal or a script."
+    },
+    {
+      "q": "Where do I manage my plan?",
+      "a": "Billing and plans are handled through SparkPay, linked from the pricing page in the app."
+    },
+    {
+      "q": "Where do I report a bug?",
+      "a": "Post it in the support channels here with the URL you were demoing and what you expected to happen."
+    }
+  ],
+  "jokes": [
+    "recording a demo by hand: 14 takes, 1 usable, 0 patience",
+    "every demo works perfectly until someone else is watching",
+    "the cursor always wanders during the one good take",
+    "nothing exposes bad UX like narrating it out loud",
+    "a good demo hides a thousand loading spinners"
+  ]
+}

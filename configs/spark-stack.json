@@ -1,0 +1,66 @@
+{
+  "app": {
+    "name": "Spark Stack",
+    "tagline": "The full-stack Next.js starter that sparks your next project",
+    "url": "https://sparkstack.dev",
+    "description": "Spark Stack is a full-stack Next.js starter you buy once and build on: Google OAuth via NextAuth v5, a protected dashboard streaming live database stats, Drizzle schema and migrations on any Postgres, plus drop-in UI modules (social share, tooltips, animated backgrounds, onboarding tour, loaders, confetti). Dogfooded to build sparkstack.dev itself.",
+    "stack": "Next.js 15, Bun, Postgres (Neon or Supabase), Drizzle ORM, NextAuth v5, Tailwind",
+    "brand_color": 3900150,
+    "icon_url": "https://sparkstack.dev/favicon.png"
+  },
+  "guild_id": "1537485977755459684",
+  "owner_id": "503658873534677022",
+  "channels": {
+    "general": "1537500294127288352",
+    "help": "1537500297658630234",
+    "bug_reports": "1537500298640359505",
+    "bot_logs": "1537500306177265785",
+    "announcements": "1537500287223201866",
+    "rules": "1537500284866011146",
+    "faq": "1537500291719499786",
+    "links": "1537500289853296692"
+  },
+  "roles": {
+    "admin": "1537500270202851368",
+    "moderator": "1537500271209619516",
+    "subscriber": "1537500272618901578",
+    "member": "1537500275323969637"
+  },
+  "rules_message_id": "1537500307599130625",
+  "personality": {
+    "name": "Alex",
+    "tone": "friendly, concise, slightly witty. Never salesy. Talks like a helpful dev friend who has shipped this starter a dozen times. Uses lowercase casually but capitalizes proper nouns. Keeps responses under 3 sentences unless explaining something technical.",
+    "morning_hour": 9,
+    "lunch_hour": 12,
+    "timezone": "UTC"
+  },
+  "faq": [
+    {
+      "q": "What do I actually get when I buy Spark Stack?",
+      "a": "The full Next.js 15 + Bun codebase: Google OAuth (NextAuth v5), a protected dashboard wired to live database stats, Drizzle schema and migrations, and the drop-in UI modules. You get the repo, so you own the code."
+    },
+    {
+      "q": "Which database does it need?",
+      "a": "Any Postgres. Neon and Supabase both work out of the box, and there is a docker-compose file if you want local Postgres in one command."
+    },
+    {
+      "q": "Do I have to use every module?",
+      "a": "No. Every piece is a drop-in module by design: delete what you do not need, keep what you do."
+    },
+    {
+      "q": "How does auth work?",
+      "a": "Google OAuth through NextAuth v5, with middleware protecting the dashboard routes. It is already wired, you supply the client credentials."
+    },
+    {
+      "q": "Where do I buy it?",
+      "a": "Checkout is hosted on SparkPay at sparkpay.dev/spark/spark-stack. The site never publishes a price itself."
+    }
+  ],
+  "jokes": [
+    "boilerplate is just past you being kind to future you",
+    "every project starts clean, give it two weeks",
+    "the auth flow always takes longer than you estimated, always",
+    "naming things is still the hardest part and no starter fixes that",
+    "shipping beats refactoring, but refactoring feels so much better"
+  ]
+}

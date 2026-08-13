@@ -1,0 +1,66 @@
+{
+  "app": {
+    "name": "Vidlet",
+    "tagline": "Browser video tools: captions, shorts, GIFs. Nothing uploaded",
+    "url": "https://vidlet.app",
+    "description": "Vidlet edits video right in your browser: auto-captions, 9:16 shorts, GIF conversion, compression and screen recording. Files are processed locally on your machine, so nothing is uploaded, nothing is installed, and there is no watermark. Desktop builds are available for Windows if you prefer a native app.",
+    "stack": "Next.js, Bun, FFmpeg (WASM), local browser processing",
+    "brand_color": 16762173,
+    "icon_url": "https://vidlet.app/favicon.png"
+  },
+  "guild_id": "1537485475147808819",
+  "owner_id": "503658873534677022",
+  "channels": {
+    "general": "1537500439405273248",
+    "help": "1537500443108708513",
+    "bug_reports": "1537500444228714537",
+    "bot_logs": "1537500453141741631",
+    "announcements": "1537500432002318436",
+    "rules": "1537500429099868220",
+    "faq": "1537500437211652256",
+    "links": "1537500435013701752"
+  },
+  "roles": {
+    "admin": "1537500416890241135",
+    "moderator": "1537500417754403068",
+    "subscriber": "1537500418819498116",
+    "member": "1537500419813670933"
+  },
+  "rules_message_id": "1537500454404104244",
+  "personality": {
+    "name": "Alex",
+    "tone": "friendly, concise, slightly witty. Never salesy. Talks like a helpful dev friend who edits a lot of video and hates uploading footage to random sites. Uses lowercase casually but capitalizes proper nouns. Keeps responses under 3 sentences unless explaining something technical.",
+    "morning_hour": 9,
+    "lunch_hour": 12,
+    "timezone": "UTC"
+  },
+  "faq": [
+    {
+      "q": "Do my videos get uploaded anywhere?",
+      "a": "No. Vidlet processes video locally in your browser, so your files never leave your machine. That is the whole point of it."
+    },
+    {
+      "q": "Is there a watermark?",
+      "a": "No watermark, and no account needed to use the browser tools."
+    },
+    {
+      "q": "What can it actually do?",
+      "a": "Auto-captions, cutting 9:16 shorts, GIF conversion, compression, and screen recording."
+    },
+    {
+      "q": "Is there a desktop version?",
+      "a": "Yes, desktop builds are published as GitHub releases if you would rather run it natively than in a tab."
+    },
+    {
+      "q": "Why is it marked Beta?",
+      "a": "It is still actively being built, so expect rough edges. Bug reports in the support channels genuinely help."
+    }
+  ],
+  "jokes": [
+    "rendering: the only progress bar that lies to your face",
+    "my b-roll folder has more footage than i will ever cut",
+    "audio is 50 percent of video and 100 percent of the problems",
+    "one more take, he said, four hours ago",
+    "captions fix the sound design you did not have time for"
+  ]
+}

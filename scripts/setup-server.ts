@@ -256,8 +256,8 @@ const faqMsg = await api(`/channels/${faqCh.id}/messages`, 'POST', {
 });
 
 // Pin important messages
-if (rulesMsg) await api(`/channels/${rules.id}/messages/${rulesMsg.id}/pins`, 'PUT');
-if (faqMsg) await api(`/channels/${faqCh.id}/messages/${faqMsg.id}/pins`, 'PUT');
+if (rulesMsg) await api(`/channels/${rules.id}/pins/${rulesMsg.id}`, 'PUT');
+if (faqMsg) await api(`/channels/${faqCh.id}/pins/${faqMsg.id}`, 'PUT');
 
 // --- Step 6: Auto-moderation ---
 console.log('[6/7] Setting up auto-moderation...');
