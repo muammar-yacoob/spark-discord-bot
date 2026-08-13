@@ -137,6 +137,14 @@ STYLE_SINK = {"bunny": 0.14}
 # looking stiff, so these get a minimum tilt regardless of the silhouette.
 ALWAYS_TILT = {"sun": 15.0}
 
+# Per-app nudges, for marks the generic geometry gets wrong. "mark" and "hat"
+# are size multipliers; "sink" overrides how deep the hat sits, so a higher
+# value tucks more of the mark up under the brim.
+APP_TUNING = {
+    # The blob sits small in frame and wants its dome up under the brim.
+    "sellular": {"mark": 1.20, "hat": 1.10, "sink": 0.66},
+}
+
 STYLES = {
     "sun": sun_hat,
     "santa": santa_hat,
@@ -195,7 +203,7 @@ def _crown_and_tilt(mark, window=0.30, max_deg=14):
     return crown_x, crown_y, angle
 
 
-def compose(icon_path, style):
+def compose(icon_path, style, app=None):
     """Mark anchored bottom-right at full weight, hat tucked into the top-left corner.
 
     The hat is cropped to its own bounding box and scaled down before placing, so it
@@ -211,11 +219,14 @@ def compose(icon_path, style):
     # Crop to the mark's real pixels first. Every app icon carries a different
     # amount of transparent padding, so placing the hat by canvas coordinates puts
     # it across a wide mark (QuickPeek) while leaving a gap on a narrow one.
+    tune = APP_TUNING.get(app, {})
+
     mbox = base.getbbox()
     mark = base.crop(mbox) if mbox else base
 
     # Reserve the top band for the hat; the mark fills the rest, bottom-aligned.
-    avail_h, avail_w = int(S * 0.70), int(S * 0.86)
+    avail_h = min(int(S * 0.70 * tune.get('mark', 1.0)), int(S * 0.92))
+    avail_w = min(int(S * 0.86 * tune.get('mark', 1.0)), int(S * 0.94))
     scale = min(avail_w / mark.width, avail_h / mark.height)
     mark = mark.resize(
         (max(1, int(mark.width * scale)), max(1, int(mark.height * scale))),
@@ -238,7 +249,9 @@ def compose(icon_path, style):
     hbox = hat.getbbox()
     if hbox:
         hat = hat.crop(hbox)
-    target_w = int(mark.width * HAT_SCALE * STYLE_SCALE.get(style, 1.0))
+    target_w = int(
+        mark.width * HAT_SCALE * STYLE_SCALE.get(style, 1.0) * tune.get('hat', 1.0)
+    )
     hat = hat.resize(
         (target_w, max(1, int(hat.height * target_w / hat.width))), Image.LANCZOS
     )
@@ -261,7 +274,8 @@ def compose(icon_path, style):
         hat_x = mark_x + (mark.width - hat.width) // 2
     else:
         hat_x = mark_x + crown_x - hat.width // 2
-    hat_y = mark_y + crown_y - hat.height + int(hat.height * STYLE_SINK.get(style, HAT_SINK))
+    sink = tune.get('sink', STYLE_SINK.get(style, HAT_SINK))
+    hat_y = mark_y + crown_y - hat.height + int(hat.height * sink)
     canvas.alpha_composite(hat, (max(0, hat_x), max(0, hat_y)))
     return canvas
 
@@ -315,7 +329,7 @@ def main():
             print(f"  {name:<12} SKIP (no base icon at {icon})")
             continue
         cfg = json.loads(cfg_path.read_text())
-        img = compose(icon, style)
+        img = compose(icon, style, name)
         dest = outdir / f"{name}.png"
         img.save(dest)
         if args.dry_run:
