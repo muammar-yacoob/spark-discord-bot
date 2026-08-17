@@ -58,7 +58,7 @@ export async function checkResolved(
 
   try {
     const completion = await groq.chat.completions.create({
-      model: 'llama-3.3-70b-versatile',
+      model: 'openai/gpt-oss-20b',
       messages: [
         {
           role: 'system',
@@ -67,8 +67,10 @@ export async function checkResolved(
         { role: 'user', content },
       ],
       temperature: 0,
-      max_tokens: 3,
-    });
+      // Reasoning spends from the same max_tokens budget as the reply.
+      max_tokens: 700,
+      reasoning_effort: 'low',
+    } as any);
     const result = (completion.choices[0]?.message?.content || 'no').trim().toLowerCase();
 
     if (result === 'yes') {
@@ -88,7 +90,7 @@ async function isNovelQuestion(config: AppConfig, question: string): Promise<boo
 
   try {
     const completion = await groq.chat.completions.create({
-      model: 'llama-3.3-70b-versatile',
+      model: 'openai/gpt-oss-20b',
       messages: [
         {
           role: 'system',
@@ -97,8 +99,10 @@ async function isNovelQuestion(config: AppConfig, question: string): Promise<boo
         { role: 'user', content: question },
       ],
       temperature: 0,
-      max_tokens: 3,
-    });
+      // Reasoning spends from the same max_tokens budget as the reply.
+      max_tokens: 700,
+      reasoning_effort: 'low',
+    } as any);
     return (completion.choices[0]?.message?.content || 'no').trim().toLowerCase() === 'yes';
   } catch {
     return false;
@@ -113,7 +117,7 @@ async function generateFaqEntry(
 ): Promise<{ q: string; a: string } | null> {
   try {
     const completion = await groq.chat.completions.create({
-      model: 'llama-3.3-70b-versatile',
+      model: 'openai/gpt-oss-120b',
       messages: [
         {
           role: 'system',
@@ -125,8 +129,10 @@ async function generateFaqEntry(
         },
       ],
       temperature: 0.3,
-      max_tokens: 150,
-    });
+      // Reasoning spends from the same max_tokens budget as the reply.
+      max_tokens: 700,
+      reasoning_effort: 'low',
+    } as any);
 
     const text = completion.choices[0]?.message?.content || '';
     const qMatch = text.match(/Q:\s*(.+)/);

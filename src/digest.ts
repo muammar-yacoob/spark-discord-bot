@@ -78,7 +78,7 @@ async function gatherServerStats(
             .join('\n');
           try {
             const completion = await groq.chat.completions.create({
-              model: 'llama-3.3-70b-versatile',
+              model: 'openai/gpt-oss-120b',
               messages: [
                 {
                   role: 'system',
@@ -88,8 +88,10 @@ async function gatherServerStats(
                 { role: 'user', content: helpTexts },
               ],
               temperature: 0.3,
-              max_tokens: 100,
-            });
+              // Reasoning spends from the same max_tokens budget as the reply.
+              max_tokens: 700,
+              reasoning_effort: 'low',
+            } as any);
             summary.topTopics =
               completion.choices[0]?.message?.content || '';
           } catch {

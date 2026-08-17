@@ -3,6 +3,12 @@ import type { AppConfig } from './config';
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
+// llama-3.3-70b-versatile was retired by Groq (404s now). The gpt-oss models
+// reason before answering; the small one is enough for yes/no and one-word
+// classification calls.
+const MODEL = 'openai/gpt-oss-120b';
+const MODEL_SMALL = 'openai/gpt-oss-20b';
+
 function buildSystemPrompt(config: AppConfig, context?: string): string {
   const faqBlock = config.faq
     .map((f) => `Q: ${f.q}\nA: ${f.a}`)
@@ -36,16 +42,19 @@ ${context ? `Recent related messages for context:\n${context}` : ''}`;
 
 async function safeComplete(
   messages: Array<{ role: string; content: string }>,
-  opts: { temperature?: number; max_tokens?: number; top_p?: number } = {}
+  opts: { temperature?: number; max_tokens?: number; top_p?: number; model?: string } = {}
 ): Promise<string | null> {
   try {
     const completion = await groq.chat.completions.create({
-      model: 'llama-3.3-70b-versatile',
+      model: opts.model ?? MODEL,
       messages: messages as any,
       temperature: opts.temperature ?? 0.7,
-      max_tokens: opts.max_tokens ?? 300,
+      // Reasoning spends from the same max_tokens budget as the reply; a cap
+      // sized to the visible answer starves the model before it answers.
+      max_tokens: Math.max(opts.max_tokens ?? 300, 700),
+      reasoning_effort: 'low',
       top_p: opts.top_p ?? 0.9,
-    });
+    } as any);
     return completion.choices[0]?.message?.content || null;
   } catch (err) {
     console.error('[ai] groq call failed:', err);
@@ -114,7 +123,7 @@ export async function classifyIntent(
       },
       { role: 'user', content: message },
     ],
-    { temperature: 0, max_tokens: 5 }
+    { temperature: 0, max_tokens: 5, model: MODEL_SMALL }
   );
   const word = (result || 'ignore').trim().toLowerCase();
   if (['support', 'bug', 'chat', 'escalate'].includes(word)) {
@@ -139,7 +148,7 @@ export async function assessConfidence(
         content: `Question: ${question}\nAnswer: ${answer}`,
       },
     ],
-    { temperature: 0, max_tokens: 3 }
+    { temperature: 0, max_tokens: 3, model: MODEL_SMALL }
   );
   return (result || 'yes').trim().toLowerCase() === 'yes';
 }
