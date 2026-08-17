@@ -1,0 +1,74 @@
+{
+  "app": {
+    "name": "SparkAds",
+    "tagline": "An hour a day, on every dashboard in the Spark network",
+    "url": "https://sparkads.dev",
+    "description": "SparkAds splits the day into 24 hourly slots and gives each one to a single advertiser. Hold a slot and your card runs in the dashboard carousel of every app in the Spark network during that hour, every day, for $9 a month. Pick an hour, write the card, a human reviews it, and the dashboard shows what it did.",
+    "stack": "Next.js 15, React 19, Bun, Neon PostgreSQL, Drizzle, NextAuth v5, Tailwind v4, SparkPay",
+    "brand_color": 10741301,
+    "icon_url": "https://sparkads.dev/favicon.png"
+  },
+  "guild_id": "1538936076255760447",
+  "owner_id": "503658873534677022",
+  "channels": {
+    "general": "1538971889261617262",
+    "help": "1538971893204516936",
+    "bug_reports": "1538971894341046292",
+    "bot_logs": "1538971901664436310",
+    "announcements": "1538971882404188271",
+    "rules": "1538971880470483004",
+    "faq": "1538971886833246390",
+    "links": "1538971884543156386"
+  },
+  "roles": {
+    "admin": "1538971867468005478",
+    "moderator": "1538971868931952730",
+    "subscriber": "1538971869708034202",
+    "member": "1538971871272509461"
+  },
+  "rules_message_id": "1538971903023124571",
+  "personality": {
+    "name": "Alex",
+    "tone": "friendly, concise, slightly witty. Never salesy -- which is a funny thing to be on an ads product, and Alex knows it. Talks like an indie dev who has burned money on Google Ads and would rather not do it again. Uses lowercase casually but capitalizes proper nouns. Keeps responses under 3 sentences unless explaining something technical.",
+    "morning_hour": 9,
+    "lunch_hour": 12,
+    "timezone": "UTC"
+  },
+  "faq": [
+    {
+      "q": "What is SparkAds?",
+      "a": "The day is 24 hourly slots and each one belongs to a single advertiser. Hold a slot and your card runs in the dashboard carousel of every app in the Spark network during that hour, every day."
+    },
+    {
+      "q": "How much does a slot cost?",
+      "a": "$9 a month per hour, billed through SparkPay. No bidding, no ad-account overhead -- you hold the hour or you don't."
+    },
+    {
+      "q": "How do I buy a slot?",
+      "a": "Subscribe on the SparkPay pricing page, then sign in here and pick a free hour on /claim and write the five fields of your card."
+    },
+    {
+      "q": "Is there a review process?",
+      "a": "Yes -- a person reads every card before it can run. Approved cards go live at their hour, rejected ones never serve."
+    },
+    {
+      "q": "What stats do I get?",
+      "a": "The dashboard has a KPI row, a daily trend chart, a per-app breakdown, traffic sources, and a strip of the network's own numbers."
+    },
+    {
+      "q": "Where do I manage billing?",
+      "a": "Everything that touches money lives on SparkPay -- checkout, subscription state and invoices. This app links out to it so there is only one place a price is published."
+    },
+    {
+      "q": "Is there an MCP server?",
+      "a": "Yes, at https://sparkads.dev/api/mcp. The docs at /docs/mcp cover connecting it to your client."
+    }
+  ],
+  "jokes": [
+    "spent three hours picking a headline for a card that runs at 4am",
+    "google ads onboarding has more steps than my entire app",
+    "the ad account is fine, it's the $400 in clicks from one bot in ohio that hurt",
+    "nothing humbles you like watching your own impressions number",
+    "everyone wants the 9am slot and nobody wants the 3am one, which is the whole story of indie marketing"
+  ]
+}
