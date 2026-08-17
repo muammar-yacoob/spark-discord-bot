@@ -6,7 +6,8 @@
     "description": "SparkPay handles checkout, webhooks, emails, invoices, analytics, and subscription management so you can focus on building your app. Supports free-tier, one-time, recurring, and pay-as-you-go pricing.",
     "stack": "Next.js 15, Bun, Neon PostgreSQL, Drizzle ORM, Stripe, NextAuth v5",
     "brand_color": 4886754,
-    "icon_url": "https://sparkpay.dev/favicon.png"
+    "icon_url": "https://sparkpay.dev/favicon.png",
+    "spark_pay_app_id": "spark-pay"
   },
   "guild_id": "1480307708384116890",
   "owner_id": "503658873534677022",

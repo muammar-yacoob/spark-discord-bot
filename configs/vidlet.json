@@ -6,7 +6,8 @@
     "description": "Vidlet edits video right in your browser: auto-captions, 9:16 shorts, GIF conversion, compression and screen recording. Files are processed locally on your machine, so nothing is uploaded, nothing is installed, and there is no watermark. Desktop builds are available for Windows if you prefer a native app.",
     "stack": "Next.js, Bun, FFmpeg (WASM), local browser processing",
     "brand_color": 16762173,
-    "icon_url": "https://vidlet.app/favicon.png"
+    "icon_url": "https://vidlet.app/favicon.png",
+    "spark_pay_app_id": "vidlet"
   },
   "guild_id": "1537485475147808819",
   "owner_id": "503658873534677022",

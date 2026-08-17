@@ -6,7 +6,8 @@
     "description": "SparkAds splits the day into 24 hourly slots and gives each one to a single advertiser. Hold a slot and your card runs in the dashboard carousel of every app in the Spark network during that hour, every day, for $9 a month. Pick an hour, write the card, a human reviews it, and the dashboard shows what it did.",
     "stack": "Next.js 15, React 19, Bun, Neon PostgreSQL, Drizzle, NextAuth v5, Tailwind v4, SparkPay",
     "brand_color": 10741301,
-    "icon_url": "https://sparkads.dev/favicon.png"
+    "icon_url": "https://sparkads.dev/favicon.png",
+    "spark_pay_app_id": "sparkads"
   },
   "guild_id": "1538936076255760447",
   "owner_id": "503658873534677022",

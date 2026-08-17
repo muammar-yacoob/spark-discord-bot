@@ -6,7 +6,8 @@
     "description": "Spark Stack is a full-stack Next.js starter you buy once and build on: Google OAuth via NextAuth v5, a protected dashboard streaming live database stats, Drizzle schema and migrations on any Postgres, plus drop-in UI modules (social share, tooltips, animated backgrounds, onboarding tour, loaders, confetti). Dogfooded to build sparkstack.dev itself.",
     "stack": "Next.js 15, Bun, Postgres (Neon or Supabase), Drizzle ORM, NextAuth v5, Tailwind",
     "brand_color": 3900150,
-    "icon_url": "https://sparkstack.dev/favicon.png"
+    "icon_url": "https://sparkstack.dev/favicon.png",
+    "spark_pay_app_id": "spark-stack"
   },
   "guild_id": "1537485977755459684",
   "owner_id": "503658873534677022",

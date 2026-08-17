@@ -6,7 +6,8 @@
     "description": "Bottled is a SaaS platform for professional email management using custom domains. Connect your domain, Cloudflare handles DNS and inbound routing, Amazon SES handles outbound. Includes rich compose editor, email campaigns with tracking, CRM with engagement scoring, auto-reply rules, team management, and an API.",
     "stack": "Next.js 15, Neon PostgreSQL, Drizzle ORM, Amazon SES, Cloudflare, QStash",
     "brand_color": 8900331,
-    "icon_url": "https://bottled.email/favicon.png"
+    "icon_url": "https://bottled.email/favicon.png",
+    "spark_pay_app_id": "bottled"
   },
   "guild_id": "1513179953808539708",
   "owner_id": "503658873534677022",

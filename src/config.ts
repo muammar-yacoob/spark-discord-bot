@@ -10,6 +10,8 @@ export interface AppConfig {
     stack: string;
     brand_color?: number;
     icon_url?: string;
+    /** SparkPay app id, used to look up live discounts. Omit to post none. */
+    spark_pay_app_id?: string;
   };
   guild_id: string;
   owner_id: string;
@@ -22,6 +24,8 @@ export interface AppConfig {
     morning_hour: number;
     lunch_hour: number;
     timezone: string;
+    /** Scheduled posts only fire above this many humans online. Default 5. */
+    min_online?: number;
   };
   faq: Array<{ q: string; a: string }>;
   jokes: string[];

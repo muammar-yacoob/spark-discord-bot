@@ -6,7 +6,8 @@
     "description": "QuickPeek turns your app into a demo video without the recording session: point it at a URL, and it generates a narrated walkthrough. Use it from the web app or the CLI when you need a demo for a launch, a listing or a landing page.",
     "stack": "Next.js, Bun, Neon PostgreSQL, NextAuth, Playwright",
     "brand_color": 3718648,
-    "icon_url": "https://quickpeek.co/favicon.png"
+    "icon_url": "https://quickpeek.co/favicon.png",
+    "spark_pay_app_id": "quickpeek"
   },
   "guild_id": "1537488232718274602",
   "owner_id": "503658873534677022",
