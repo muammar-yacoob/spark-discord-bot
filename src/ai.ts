@@ -40,26 +40,70 @@ ${faqBlock}
 ${context ? `Recent related messages for context:\n${context}` : ''}`;
 }
 
+// Every API key in the org draws on ONE shared per-minute token budget, across
+// all models and all keys, so a busy minute in a sibling project throttles the
+// bot. A separate key isolates credentials, never quota. safeComplete returns
+// null on failure and every caller falls back to canned text, so an un-retried
+// throttle looks like the bot going vague rather than anything erroring.
+const MAX_RETRY_WAIT_MS = 15_000;
+
+/** True for a cap that will not clear inside this call's lifetime. */
+function isDailyCap(message: string): boolean {
+  return /tokens per day|requests per day|\bTPD\b|\bRPD\b/i.test(message);
+}
+
+/**
+ * Milliseconds to wait before retrying, or null when retrying is pointless.
+ * Only per-minute throttling is worth sleeping on.
+ */
+function retryDelayMs(err: unknown): number | null {
+  const e = err as { status?: number; headers?: unknown; message?: string };
+  if (e?.status !== 429) return null;
+
+  const message = String(e.message ?? '');
+  if (isDailyCap(message)) return null;
+
+  const headers = e.headers as { get?: (k: string) => string | null } | undefined;
+  const header = Number.parseFloat(
+    (typeof headers?.get === 'function'
+      ? headers.get('retry-after')
+      : (e.headers as Record<string, string> | undefined)?.['retry-after']) ?? ''
+  );
+  // The provider repeats the wait in the message ("Please try again in 7.67s").
+  const fromMessage = Number.parseFloat(/try again in ([\d.]+)s/i.exec(message)?.[1] ?? '');
+  const seconds = Number.isFinite(header) ? header : fromMessage;
+  if (!Number.isFinite(seconds)) return 2_000;
+  // Round up and add a margin, or the retry lands in the same window.
+  return Math.min(Math.ceil(seconds * 1000) + 250, MAX_RETRY_WAIT_MS);
+}
+
 async function safeComplete(
   messages: Array<{ role: string; content: string }>,
   opts: { temperature?: number; max_tokens?: number; top_p?: number; model?: string } = {}
 ): Promise<string | null> {
-  try {
-    const completion = await groq.chat.completions.create({
-      model: opts.model ?? MODEL,
-      messages: messages as any,
-      temperature: opts.temperature ?? 0.7,
-      // Reasoning spends from the same max_tokens budget as the reply; a cap
-      // sized to the visible answer starves the model before it answers.
-      max_tokens: Math.max(opts.max_tokens ?? 300, 700),
-      reasoning_effort: 'low',
-      top_p: opts.top_p ?? 0.9,
-    } as any);
-    return completion.choices[0]?.message?.content || null;
-  } catch (err) {
-    console.error('[ai] groq call failed:', err);
-    return null;
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const completion = await groq.chat.completions.create({
+        model: opts.model ?? MODEL,
+        messages: messages as any,
+        temperature: opts.temperature ?? 0.7,
+        // Reasoning spends from the same max_tokens budget as the reply; a cap
+        // sized to the visible answer starves the model before it answers.
+        max_tokens: Math.max(opts.max_tokens ?? 300, 700),
+        reasoning_effort: 'low',
+        top_p: opts.top_p ?? 0.9,
+      } as any);
+      return completion.choices[0]?.message?.content || null;
+    } catch (err) {
+      const wait = attempt === 0 ? retryDelayMs(err) : null;
+      if (wait === null) {
+        console.error('[ai] provider call failed:', err);
+        return null;
+      }
+      await new Promise((r) => setTimeout(r, wait));
+    }
   }
+  return null;
 }
 
 export async function generateResponse(
